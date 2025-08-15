@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise</title>
+<style>
+  * {margin:0; padding:0; box-sizing:border-box;}
+  body, html {height:100%; font-family: Arial, sans-serif; overflow:hidden;}
+
+  .layer {display:none; height:100%; width:100%; position:absolute; top:0; left:0;}
+  .active {display:flex; justify-content:center; align-items:center; flex-direction:column;}
+
+  /* Layer 1 */
+  #layer1 {
+    background: url('mybirthday.jpg') center/cover no-repeat;
+    color: white;
+    text-shadow: 2px 2px 4px black;
+    flex-direction: column;
+  }
+  #layer1 input {
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 20px;
+    width: 250px;
+    text-align: center;
+  }
+  #layer1 button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #ff5eaa;
+    color: white;
+    cursor: pointer;
+  }
+
+  /* Layer 2 */
+  #layer2 {
+    background: linear-gradient(120deg, #ff5eaa, #ffd56b);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    flex-direction: column;
+  }
+  .card {
+    background: rgba(0,0,0,0.3);
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 500px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+  #layer2 button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background: #ffd56b;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  /* Layer 3 - 3D Cylinder Slideshow */
+  #layer3 {
+    background: black;
+    flex-direction: column;
+    color: white;
+    perspective: 1000px;
+  }
+  .cylinder {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: spin 10s linear infinite;
+  }
+  .cylinder img {
+    position: absolute;
+    width: 280px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(255,255,255,0.3);
+  }
+  @keyframes spin {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+  }
+</style>
+</head>
+<body>
+
+<!-- Layer 1 -->
+<div id="layer1" class="layer active">
+  <h1>Enter Your Name</h1>
+  <input type="text" id="nameInput" placeholder="Your name">
+  <button onclick="goToLayer2()">Open Surprise</button>
+</div>
+
+<!-- Layer 2 -->
+<div id="layer2" class="layer">
+  <div class="card">
+    <h1>Hehew neku surprise lu em levv😁</h1>
+    <p>urike edo chepalii ga anii saying <br>Happie Happie birthday sravanthi_pyla💕!!</p>
+  </div>
+  <button onclick="goToLayer3()">Next</button>
+</div>
+
+<!-- Layer 3 -->
+<div id="layer3" class="layer">
+  <div class="cylinder" id="cylinder">
+    <img src="photo1.jpg" style="transform: rotateY(0deg) translateZ(400px);">
+    <img src="photo2.jpg" style="transform: rotateY(90deg) translateZ(400px);">
+    <img src="photo3.jpg" style="transform: rotateY(180deg) translateZ(400px);">
+    <img src="photo4.jpg" style="transform: rotateY(270deg) translateZ(400px);">
+  </div>
+  <audio id="bgMusic" src="birthday_song.mp3" autoplay loop></audio>
+</div>
+
+<script>
+  function goToLayer2() {
+    document.getElementById('layer1').classList.remove('active');
+    document.getElementById('layer2').classList.add('active');
+  }
+
+  function goToLayer3() {
+    document.getElementById('layer2').classList.remove('active');
+    document.getElementById('layer3').classList.add('active');
+    document.getElementById('bgMusic').play();
+  }
+</script>
+
+</body>
+</html>
